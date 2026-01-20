@@ -23,7 +23,7 @@ setup(
     version="1.0.0",
     author="Dmitry Marinov",
     author_email="marinovdk@gmail.com",
-    description="Enterprise-grade PII detection and anonymization API. GDPR/CCPA compliant. Supports 27+ entity types.",
+    description="Enterprise-grade PII detection and anonymization API. GDPR/CCPA compliant. Supports 31 entity types.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/dimanjet/piicloak",
