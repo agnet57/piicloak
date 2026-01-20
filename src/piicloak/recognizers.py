@@ -287,6 +287,30 @@ def create_contract_number_recognizer() -> PatternRecognizer:
     )
 
 
+def create_organization_recognizer() -> PatternRecognizer:
+    """Create pattern-based organization recognizer for company suffixes."""
+    patterns = [
+        # UAE companies
+        Pattern("FZCO", r"\b([A-Z][A-Za-z\s&]+?)\s+FZCO\b", 0.9),
+        Pattern("FZ_LLC", r"\b([A-Z][A-Za-z\s&]+?)\s+FZ[-\s]?LLC\b", 0.9),
+        Pattern("DMCC", r"\b([A-Z][A-Za-z\s&]+?)\s+DMCC\b", 0.9),
+        # US companies
+        Pattern("CORPORATION", r"\b([A-Z][A-Za-z\s&]+?)\s+(?:Corporation|Corp\.?)\b", 0.85),
+        Pattern("INCORPORATED", r"\b([A-Z][A-Za-z\s&]+?)\s+(?:Incorporated|Inc\.?)\b", 0.85),
+        Pattern("LLC", r"\b([A-Z][A-Za-z\s&]+?)\s+(?:LLC|L\.L\.C\.)\b", 0.85),
+        Pattern("LTD", r"\b([A-Z][A-Za-z\s&]+?)\s+(?:Limited|Ltd\.?)\b", 0.85),
+        # International
+        Pattern("PTE_LTD", r"\b([A-Z][A-Za-z\s&]+?)\s+Pte\.?\s+Ltd\.?\b", 0.9),
+        Pattern("GMBH", r"\b([A-Z][A-Za-z\s&]+?)\s+GmbH\b", 0.9),
+        Pattern("SA", r"\b([A-Z][A-Za-z\s&]+?)\s+S\.A\.\b", 0.85),
+    ]
+    return PatternRecognizer(
+        supported_entity="ORGANIZATION",
+        patterns=patterns,
+        context=["company", "corporation", "inc", "llc", "fzco", "dmcc", "ltd", "limited"]
+    )
+
+
 class SpacyUsernameRecognizer(EntityRecognizer):
     """
     NER-based username recognizer using spaCy and pattern matching.
@@ -415,4 +439,5 @@ def get_all_pattern_recognizers() -> List[PatternRecognizer]:
         create_tax_id_recognizer(),
         create_bank_account_recognizer(),
         create_contract_number_recognizer(),
+        create_organization_recognizer(),
     ]
