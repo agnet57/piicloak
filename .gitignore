@@ -151,3 +151,7 @@ Thumbs.db
 *.sqlite
 .env.local
 .env.*.local
+REDDIT_POST.md
+REDDIT_POST_CLEAN.txt
+reddit_title.txt
+reddit_post_clean.txt

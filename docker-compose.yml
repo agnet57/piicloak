@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   piicloak:
-    build: .
+    image: dimanjet/piicloak:latest
     container_name: piicloak
     ports:
       - "8000:8000"
@@ -21,11 +21,3 @@ services:
       timeout: 10s
       retries: 3
       start_period: 60s
-    # Resource limits (adjust as needed)
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-          memory: 2G
-        reservations:
-          memory: 1G
